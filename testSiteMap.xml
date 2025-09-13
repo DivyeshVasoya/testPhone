@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://example.com/how-can-i-see-my-past-billing-statements.html</loc>
-    </url>
-    <url>
-        <loc>https://example.com/manage-payment-method.html</loc>
-    </url>
-    <url>
-        <loc>https://example.com/what-taxes-and-fees-are-billed-to-my-account.html</loc>
-    </url>
-    <url>
-        <loc>https://example.com/how-do-i-pay-my-bill.html</loc>
-    </url>
+
+  <url>
+    <loc>https://divyeshvasoya.github.io/testPhone/how-can-i-see-my-past-billing-statements.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://divyeshvasoya.github.io/testPhone/manage-payment-method.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://divyeshvasoya.github.io/testPhone/what-taxes-and-fees-are-billed-to-my-account.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://divyeshvasoya.github.io/testPhone/how-do-i-pay-my-bill.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
