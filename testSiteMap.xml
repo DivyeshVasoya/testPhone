@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://example.com/page1</loc>
+        <loc>https://example.com/how-can-i-see-my-past-billing-statements.html</loc>
     </url>
     <url>
-        <loc>https://example.com/page2</loc>
+        <loc>https://example.com/manage-payment-method.html</loc>
     </url>
     <url>
-        <loc>https://example.com/page3</loc>
+        <loc>https://example.com/what-taxes-and-fees-are-billed-to-my-account.html</loc>
     </url>
     <url>
-        <loc>https://example.com/page4</loc>
-    </url>
-    <url>
-        <loc>https://example.com/page5</loc>
+        <loc>https://example.com/how-do-i-pay-my-bill.html</loc>
     </url>
 </urlset>
