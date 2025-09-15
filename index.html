@@ -5,47 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone.com Support Sitemap</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: ##FFFFFF; }
-        h1 { text-align: center; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 5px 0; }
-        a { text-decoration: none; color: #1a73e8; }
-        a:hover { text-decoration: underline; }
-        .lastmod { font-size: 0.9em; color: #555; margin-left: 10px; }
+       body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
+
+    .header img {
+      height: 40px;
+    }
+
+    .header button {
+      background: #38b000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    .header button:hover {
+      background: #2a8700;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0c6b24, #0f4c1a);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-box button {
+      border: none;
+      background: transparent;
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .search-box button img {
+      width: 18px;
+      height: 18px;
+    }
+
+        .no-bullets {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 30px; border-bottom:1px solid #e0e0e0; font-family: 'Montserrat', sans-serif; padding-left:250px;padding-right:250px;">
-  
-  <!-- Logo -->
-  <div style="display:flex; align-items:center; gap:8px;">
-    <img src="https://phone--sb1.sandbox.my.salesforce.com/servlet/servlet.ImageServer?id=015cc000002zqTZ&oid=00Dcc000002sPZl&lastMod=1757432736000" alt="Logo"  style="width:170px ;height:90px;">
-  </div>
+    
+    <header class="header">
+    <div class="logo">
+      <img src="https://support.phone.com/hs-fs/hubfs/phonecomlogo.png?width=200&height=74&name=phonecomlogo.png" alt="Phone.com Logo" style="width:200px ;height:75px;">
+    </div>
+    <button style="font-family: 'Montserrat', sans-serif;">Go to Phone.com</button>
+  </header>
 
-  <!-- Navigation -->
-  <div style="display:flex; align-items:center; gap:25px; font-size:14px; color:#333;">
-    <a href="#" style="text-decoration:none; color:#333; display:flex; align-items:center; gap:4px;">
-      Services <span style="font-size:10px;">▼</span>
-    </a>
-    <a href="#" style="text-decoration:none; color:#333; display:flex; align-items:center; gap:4px;">
-      Phone Numbers <span style="font-size:10px;">▼</span>
-    </a>
-    <a href="#" style="text-decoration:none; background:#000; color:#fff; font-weight:bold; padding:8px 16px; border-radius:20px; text-decoration:none;">
-      Plans & Pricing
-    </a>
-  </div>
-</div>
-    <h1>Phone.com Support Sitemap</h1>
-    <ul>
-        <li><a href="how-can-i-see-my-past-billing-statements.html">How Can I See My Past Billing Statements?</a></li>
-    <li><a href="manage-payment-method.html">Manage Payment Method</a></li>
-    <li><a href="what-taxes-and-fees-are-billed-to-my-account.html">What Taxes and Fees Are Billed to My Account?</a></li>
-    <li><a href="how-do-i-pay-my-bill.html">How Do I Pay My Bill?</a></li>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 style="font-family: 'Montserrat', sans-serif;">Hello. How can we help you?</h1>
+    <div class="search-box" style="font-family: 'Montserrat', sans-serif;">
+      <input type="text" placeholder="Search for answers" />
+      <button>
+        🔍
+      </button>
+    </div>
+  </section>
+  <div style="width:700px; padding-right: 20px; padding-left:650px;">
+    <h1 style="font-family: 'Montserrat', sans-serif;">Account & Billing</h1>
+    <p style="font-family: 'Montserrat', sans-serif;">Get information about account setup and billing, including managing users and extensions and transferring a phone number to Phone.com.</p>
+  </br>
+    <a href="how-can-i-see-my-past-billing-statements.html" style="color: #3FAe29;text-decoration: none;font-family: 'Montserrat', sans-serif;">HIPAA Compliance FAQ's</a>
+    <hr style="border-top: 0.1px solid #ccc;width: 700px;">
+    <h2 style="font-family: 'Montserrat', sans-serif;">Account Management</h2>
+    <ul class="no-bullets" style="font-family: 'Montserrat', sans-serif;">
+        <li><a href="how-can-i-see-my-past-billing-statements.html" style="color: #3FAe29;text-decoration: none;">How can I block a number from calling my Phone.com number(s)?</a></li>
+    <li><a href="manage-payment-method.html" style="color: #3FAe29;text-decoration: none;">How do I update account settings?</a></li>
+    <li><a href="what-taxes-and-fees-are-billed-to-my-account.html" style="color: #3FAe29;text-decoration: none;">How can I add or remove minutes from my plan?</a></li>
+    <li><a href="how-do-i-pay-my-bill.html" style="color: #3FAe29;text-decoration: none;">Where do I find my SIP credentials?</a></li>
+    <li><a href="how-do-i-pay-my-bill.html" style="color: #3FAe29;text-decoration: none;">What do I do if I forgot my password?</a></li>
+        <!-- Add the rest of your URLs here in the same format -->
+    </ul></br><hr style="border-top: 0.1px solid #ccc;width: 700px;">
+    <h2 style="font-family: 'Montserrat', sans-serif;">Billing</h2>
+    <ul class="no-bullets" style="font-family: 'Montserrat', sans-serif;">
+        <li><a href="how-can-i-see-my-past-billing-statements.html" style="color: #3FAe29;text-decoration: none;">How Can I See My Past Billing Statements?</a></li>
+    <li><a href="manage-payment-method.html" style="color: #3FAe29;text-decoration: none;">Manage Payment Method</a></li>
+    <li><a href="what-taxes-and-fees-are-billed-to-my-account.html" style="color: #3FAe29;text-decoration: none;">What Taxes and Fees Are Billed to My Account?</a></li>
+    <li><a href="how-do-i-pay-my-bill.html" style="color: #3FAe29;text-decoration: none;">How Do I Pay My Bill?</a></li>
         <!-- Add the rest of your URLs here in the same format -->
     </ul>
+    </br>
+    </div>
+<hr style="border-top: 0.1px solid #ccc;">
+  <footer class="footter">
+    <img src="https://support.phone.com/hs-fs/hubfs/phonecomlogo-1.png?width=300&height=112&name=phonecomlogo-1.png" alt="Phone.com Logo" style="width:300px ;height:111px;">
+        <div style="display: flex;">
+        <div><p style="font-family: 'Montserrat', sans-serif;padding-left: 15px;">Phone.com Help Center</p></div>
+        <div><p style="font-family: 'Montserrat', sans-serif; position: absolute; right: 20px;">Copyright © 2025, Phone.com</p></div>
+    </div>
+    
+    
+  </footer>
 </body>
 </html>
+
 
 
 
