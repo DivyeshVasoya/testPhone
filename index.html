@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone.com Support Sitemap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00Dcc000002sPZl',
+				'Agentforce_Messaging_Channel',
+				'https://phone--sb1.sandbox.my.site.com/ESWAgentforceMessagingC1757437791831',
+				{
+					scrt2URL: 'https://phone--sb1.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://phone--sb1.sandbox.my.site.com/ESWAgentforceMessagingC1757437791831/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
     <style>
        body {
       margin: 0;
@@ -148,6 +169,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
