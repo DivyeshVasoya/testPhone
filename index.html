@@ -151,8 +151,8 @@
 
       embeddedservice_bootstrap.init(
         '00Dcc000002sPZl', // Org Id
-        'Agentforce_Service_Agent_Site', // Config Name (must match Setup)
-        'https://phone--sb1.sandbox.my.salesforce-scrt.com', // SCRT base URL
+        'Agentforce_Service_Agent_Site', // Config Name
+        'https://phone--sb1.sandbox.my.salesforce-scrt.com', // SCRT base
         {
           scrt2URL: 'https://phone--sb1.sandbox.my.salesforce-scrt.com'
         }
@@ -163,13 +163,15 @@
   }
 </script>
 
-<!-- This script comes from Salesforce, not your site -->
+<!-- Load from SCRT instead of service.force.com -->
 <script type="text/javascript"
-  src="https://service.force.com/embeddedservice/5.0/esw.min.js"
+  src="https://phone--sb1.sandbox.my.salesforce-scrt.com/embeddedservice/5.0/esw.min.js"
   onload="initEmbeddedMessaging()"></script>
+
 
 </body>
 </html>
+
 
 
 
