@@ -143,12 +143,11 @@
         <div><p style="font-family: 'Montserrat', sans-serif;padding-left: 15px;">Phone.com Help Center</p></div>
         <div><p style="font-family: 'Montserrat', sans-serif; position: absolute; right: 20px;">Copyright © 2025, Phone.com</p></div>
     </div>   
-	  <!-- Chat Button -->
+	<!-- Chat Button -->
 <button id="launchChatBtn" onclick="window.launchSupportChat()">
     Chat with Support
 </button>
 
-  </footer>
 <script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
@@ -167,8 +166,18 @@
 				const chatAPI = window.embeddedservice_bootstrap.utilAPI;
 
 				if (chatAPI) {
-					// Hide chat button initially
+					// Hide the bubble initially
 					chatAPI.hideChatButton();
+
+					// Function to launch chat from custom button
+					window.launchSupportChat = () => {
+						chatAPI.launchChat();
+
+						// Immediately hide the bubble after launching
+						setTimeout(() => {
+							chatAPI.hideChatButton();
+						}, 100); // small delay to ensure it hides
+					};
 
 					// Auto-hide when chat session ends
 					if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
@@ -186,12 +195,6 @@
 						};
 						checkChatClosed();
 					}
-
-					// Optional: Launch chat programmatically whenever you want
-					// Example: call window.launchSupportChat() from anywhere
-					window.launchSupportChat = () => {
-						chatAPI.launchChat();
-					};
 				}
 			});
 
@@ -203,12 +206,15 @@
 
 <script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
+	  
+
 
 
 <!--<script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWGithubHostChannel1758519450394/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>-->
 
 </body>
 </html>
+
 
 
 
