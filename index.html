@@ -143,68 +143,64 @@
         <div><p style="font-family: 'Montserrat', sans-serif;padding-left: 15px;">Phone.com Help Center</p></div>
         <div><p style="font-family: 'Montserrat', sans-serif; position: absolute; right: 20px;">Copyright © 2025, Phone.com</p></div>
     </div>   
-	<!-- Chat Button -->
+	<!-- Custom Chat Button -->
 <button id="launchChatBtn" onclick="window.launchSupportChat()">
     Chat with Support
 </button>
 
+<style>
+  /* Completely hide the default Salesforce chat bubble */
+  #embeddedServiceLiveAgent { 
+    display: none !important; 
+  }
+</style>
+
 <script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // Set language
+function initEmbeddedMessaging() {
+    try {
+        embeddedservice_bootstrap.settings.language = 'en_US';
 
-			embeddedservice_bootstrap.init(
-				'00DgL00000A8cwn', // Org ID
-				'TESTCHANNEL',     // Deployment Name
-				'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455', // Site URL
-				{
-					scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com'
-				}
-			);
+        embeddedservice_bootstrap.init(
+            '00DgL00000A8cwn', // Org ID
+            'TESTCHANNEL',     // Deployment Name
+            'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
+            { scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com' }
+        );
 
-			window.addEventListener("onEmbeddedMessagingReady", () => {
-				const chatAPI = window.embeddedservice_bootstrap.utilAPI;
+        window.addEventListener("onEmbeddedMessagingReady", () => {
+            const chatAPI = window.embeddedservice_bootstrap.utilAPI;
 
-				if (chatAPI) {
-					// Hide the bubble initially
-					chatAPI.hideChatButton();
+            if (chatAPI) {
+                // Hide bubble initially and always
+                chatAPI.hideChatButton();
 
-					// Function to launch chat from custom button
-					window.launchSupportChat = () => {
-						chatAPI.launchChat();
+                // Launch chat from custom button
+                window.launchSupportChat = () => {
+                    chatAPI.launchChat();
 
-						// Immediately hide the bubble after launching
-						setTimeout(() => {
-							chatAPI.hideChatButton();
-						}, 100); // small delay to ensure it hides
-					};
+                    // Ensure bubble stays hidden
+                    setTimeout(() => {
+                        chatAPI.hideChatButton();
+                    }, 100);
+                };
 
-					// Auto-hide when chat session ends
-					if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
-						embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
-							chatAPI.hideChatButton();
-						});
-					} else {
-						// Fallback polling
-						const checkChatClosed = () => {
-							if (chatAPI.isChatOpen && !chatAPI.isChatOpen()) {
-								chatAPI.hideChatButton();
-							} else {
-								setTimeout(checkChatClosed, 1000);
-							}
-						};
-						checkChatClosed();
-					}
-				}
-			});
+                // Auto-hide chat after session ends
+                if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
+                    embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
+                        chatAPI.hideChatButton();
+                    });
+                }
+            }
+        });
 
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
+    } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+    }
+};
 </script>
 
 <script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
 
 	  
 
@@ -214,6 +210,7 @@
 
 </body>
 </html>
+
 
 
 
