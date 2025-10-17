@@ -160,19 +160,35 @@
 
 			// Hide chat button immediately on load
 			window.addEventListener("onEmbeddedMessagingReady", () => {
-				window.embeddedservice_bootstrap.utilAPI.hideChatButton();
+				const chatAPI = window.embeddedservice_bootstrap.utilAPI;
 
-				// Listen for chat session end to hide button again
-				embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
-					window.embeddedservice_bootstrap.utilAPI.hideChatButton();
-				});
+				if (chatAPI) {
+					chatAPI.hideChatButton(); // Hide on load
 
-				// Example: Launch chat on custom button click
-				const chatButton = document.getElementById("myChatButton");
-				if (chatButton) {
-					chatButton.addEventListener("click", () => {
-						window.embeddedservice_bootstrap.utilAPI.launchChat();
-					});
+					// Listen for chat session end if event API exists
+					if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
+						embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
+							chatAPI.hideChatButton();
+						});
+					} else {
+						// Fallback: Poll to auto-hide after session ends
+						const checkChatClosed = () => {
+							if (chatAPI.isChatOpen && !chatAPI.isChatOpen()) {
+								chatAPI.hideChatButton();
+							} else {
+								setTimeout(checkChatClosed, 1000); // retry every 1s
+							}
+						};
+						checkChatClosed();
+					}
+
+					// Launch chat on custom button click
+					const chatButton = document.getElementById("myChatButton");
+					if (chatButton) {
+						chatButton.addEventListener("click", () => {
+							chatAPI.launchChat();
+						});
+					}
 				}
 			});
 
@@ -190,6 +206,7 @@
 
 </body>
 </html>
+
 
 
 
