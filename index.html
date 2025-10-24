@@ -145,13 +145,6 @@
         <div><p style="font-family: 'Montserrat', sans-serif; position: absolute; right: 20px;">Copyright © 2025, Phone.com</p></div>
     </div>  
 
-<style>
-  /* Completely hide the default Salesforce chat bubble */
-  #embeddedServiceLiveAgent { 
-    display: none !important; 
-  }
-</style>
-
 <script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
@@ -171,11 +164,93 @@
 	};
 </script>
 <script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<!-- Custom draggable chat launcher -->
+<div id="draggableChat">💬</div>
+	  <style>
+  /* Optional: Give the draggable div a handle look */
+  #draggableChat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3FAe29;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+    font-size: 28px;
+    cursor: grab;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
 
+  #draggableChat:active {
+    cursor: grabbing;
+  }
+</style>
 <!--<script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWGithubHostChannel1758519450394/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>-->
+<script>
+  // --- Make custom div draggable ---
+  dragElement(document.getElementById("draggableChat"));
 
+  function dragElement(elmnt) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    elmnt.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = "auto";
+      elmnt.style.right = "auto";
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+
+  // --- Connect with Salesforce Embedded Messaging ---
+  window.addEventListener("onEmbeddedMessagingReady", () => {
+    const chatAPI = window.embeddedservice_bootstrap.utilAPI;
+
+    // Click opens Salesforce chat
+    document.getElementById("draggableChat").addEventListener("click", () => {
+      if (chatAPI) {
+        chatAPI.launchChat();
+      } else {
+        console.warn("Chat API not ready");
+      }
+    });
+
+    // Optional: hide custom icon when chat is open
+    if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
+      embeddedservice_bootstrap.event.on("ESW_EVENT.OPEN", () => {
+        document.getElementById("draggableChat").style.display = "none";
+      });
+      embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
+        document.getElementById("draggableChat").style.display = "block";
+      });
+    }
+  });
+</script>
 </body>
 </html>
+
 
 
 
