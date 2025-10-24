@@ -155,7 +155,7 @@
   }
 </style>
 
-<script type='text/javascript'>
+<script type="text/javascript">
 function initEmbeddedMessaging() {
     try {
         embeddedservice_bootstrap.settings.language = 'en_US';
@@ -167,39 +167,43 @@ function initEmbeddedMessaging() {
             { scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com' }
         );
 
+        // Fires when the Messaging SDK is fully ready
         window.addEventListener("onEmbeddedMessagingReady", () => {
             const chatAPI = window.embeddedservice_bootstrap.utilAPI;
 
             if (chatAPI) {
-                // Hide bubble initially and always
+                // Always hide the bubble on load
                 chatAPI.hideChatButton();
 
-                // Launch chat from custom button
+                // Expose a global function to launch from your own button
                 window.launchSupportChat = () => {
                     chatAPI.launchChat();
 
-                    // Ensure bubble stays hidden
+                    // Ensure the bubble stays hidden after launching
                     setTimeout(() => {
                         chatAPI.hideChatButton();
                     }, 100);
                 };
 
-                // Auto-hide chat after session ends
-                if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
-                    embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
-                        chatAPI.hideChatButton();
-                    });
-                }
+                // Listen for conversation end and hide chat again
+                window.addEventListener("onEmbeddedMessagingConversationEnded", () => {
+                    console.log("Conversation ended — hiding chat bubble.");
+                    chatAPI.hideChatButton();
+                });
             }
         });
 
     } catch (err) {
-        console.error('Error loading Embedded Messaging: ', err);
+        console.error("Error loading Embedded Messaging: ", err);
     }
-};
+}
 </script>
 
-<script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script 
+    type="text/javascript" 
+    src="https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js" 
+    onload="initEmbeddedMessaging()">
+</script>
 
 
 	  
@@ -210,6 +214,7 @@ function initEmbeddedMessaging() {
 
 </body>
 </html>
+
 
 
 
