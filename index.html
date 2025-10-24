@@ -180,47 +180,58 @@
 
 <script type="text/javascript">
 function initEmbeddedMessaging() {
-    try {
-        embeddedservice_bootstrap.settings.language = 'en_US';
+  try {
+    embeddedservice_bootstrap.settings.language = 'en_US';
 
-        embeddedservice_bootstrap.init(
-            '00DgL00000A8cwn', // Org ID
-            'TESTCHANNEL',     // Deployment Name
-            'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
-            { scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com' }
-        );
+    embeddedservice_bootstrap.init(
+      '00DgL00000A8cwn', // Org ID
+      'TESTCHANNEL',     // Deployment Name
+      'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
+      { scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com' }
+    );
 
-        // Fires when the Messaging SDK is fully ready
-        window.addEventListener("onEmbeddedMessagingReady", () => {
-            const chatAPI = window.embeddedservice_bootstrap.utilAPI;
+    // Fires when Messaging SDK is ready
+    window.addEventListener("onEmbeddedMessagingReady", () => {
+      const chatAPI = window.embeddedservice_bootstrap.utilAPI;
 
-            if (chatAPI) {
-                // Always hide the bubble on load
-                chatAPI.hideChatButton();
+      if (chatAPI) {
+        // Hide Salesforce's default chat bubble
+        chatAPI.hideChatButton();
 
-                // Expose a global function to launch from your own button
-                window.launchSupportChat = () => {
-                    chatAPI.launchChat();
+        // Global function for manual chat launch
+        window.launchSupportChat = () => {
+          chatAPI.launchChat();
 
-                    // Ensure the bubble stays hidden after launching
-                    setTimeout(() => {
-                        chatAPI.hideChatButton();
-                    }, 100);
-                };
+          // Keep Salesforce bubble hidden after launch
+          setTimeout(() => chatAPI.hideChatButton(), 100);
+        };
 
-                // Listen for conversation end and hide chat again
-                window.addEventListener("onEmbeddedMessagingConversationEnded", () => {
-                    console.log("Conversation ended — hiding chat bubble.");
-                    chatAPI.hideChatButton();
-                });
-            }
+        // Auto-hide after conversation ends
+        window.addEventListener("onEmbeddedMessagingConversationEnded", () => {
+          console.log("Conversation ended — hiding chat bubble.");
+          chatAPI.hideChatButton();
         });
+      }
+    });
 
-    } catch (err) {
-        console.error("Error loading Embedded Messaging: ", err);
-    }
+  } catch (err) {
+    console.error("Error loading Embedded Messaging: ", err);
+  }
 }
-	const chatBtn = document.getElementById("chatWithSupport");
+
+// Load Salesforce Embedded Messaging bootstrap script
+</script>
+
+<script
+  type="text/javascript"
+  src="https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js"
+  onload="initEmbeddedMessaging()">
+</script>
+
+<script>
+// Make sure draggable logic runs after button exists
+window.addEventListener("DOMContentLoaded", () => {
+  const chatBtn = document.getElementById("chatWithSupport");
   let isDragging = false, offsetX, offsetY;
 
   chatBtn.addEventListener("mousedown", (e) => {
@@ -246,24 +257,16 @@ function initEmbeddedMessaging() {
     }
   });
 
-  // --- Hook up Salesforce Messaging Chat ---
+  // Launch chat when clicked
   chatBtn.addEventListener("click", () => {
     if (window.embeddedservice_bootstrap?.utilAPI) {
       window.embeddedservice_bootstrap.utilAPI.launchChat();
-      // Keep chat bubble hidden
-      setTimeout(() => {
-        window.embeddedservice_bootstrap.utilAPI.hideChatButton();
-      }, 100);
+      setTimeout(() => window.embeddedservice_bootstrap.utilAPI.hideChatButton(), 100);
     } else {
       console.warn("Chat API not ready yet");
     }
   });
-</script>
-
-<script 
-    type="text/javascript" 
-    src="https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js" 
-    onload="initEmbeddedMessaging()">
+});
 </script>
 
 
@@ -275,6 +278,7 @@ function initEmbeddedMessaging() {
 
 </body>
 </html>
+
 
 
 
