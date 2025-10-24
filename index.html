@@ -163,6 +163,54 @@
 		}
 	};
 </script>
+	  <script>
+function makeSalesforceChatDraggable() {
+  // Wait until chat launcher is available
+  const checkExist = setInterval(() => {
+    const chatLauncher = document.querySelector('div[id^="embeddedMessaging"]');
+    if (chatLauncher) {
+      clearInterval(checkExist);
+      console.log("Salesforce chat bubble detected!");
+
+      // Apply draggable behavior to the outer div
+      chatLauncher.style.position = "fixed";
+      chatLauncher.style.zIndex = "9999";
+      chatLauncher.style.cursor = "grab";
+
+      let isDragging = false, offsetX, offsetY;
+
+      chatLauncher.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - chatLauncher.getBoundingClientRect().left;
+        offsetY = e.clientY - chatLauncher.getBoundingClientRect().top;
+        chatLauncher.style.transition = "none";
+        chatLauncher.style.cursor = "grabbing";
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          chatLauncher.style.left = `${e.clientX - offsetX}px`;
+          chatLauncher.style.top = `${e.clientY - offsetY}px`;
+          chatLauncher.style.right = "auto";
+          chatLauncher.style.bottom = "auto";
+        }
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          chatLauncher.style.cursor = "grab";
+          chatLauncher.style.transition = "all 0.2s ease";
+        }
+      });
+    }
+  }, 1000); // check every 1s until the chat bubble appears
+}
+
+// Run after chat script loads
+window.addEventListener("onEmbeddedMessagingReady", makeSalesforceChatDraggable);
+</script>
+
 <script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 <!-- Custom draggable chat launcher -->
 <div id="draggableChat">💬</div>
@@ -250,6 +298,7 @@
 </script>
 </body>
 </html>
+
 
 
 
