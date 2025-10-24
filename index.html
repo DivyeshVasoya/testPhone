@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Phone.com Support Sitemap</title>
     <style>
+		#chatWithSupport {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #0070d2; /* Salesforce blue */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  #chatWithSupport:active {
+    opacity: 0.85;
+  }
        body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -197,6 +220,44 @@ function initEmbeddedMessaging() {
         console.error("Error loading Embedded Messaging: ", err);
     }
 }
+	const chatBtn = document.getElementById("chatWithSupport");
+  let isDragging = false, offsetX, offsetY;
+
+  chatBtn.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    offsetX = e.clientX - chatBtn.getBoundingClientRect().left;
+    offsetY = e.clientY - chatBtn.getBoundingClientRect().top;
+    chatBtn.style.transition = "none";
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      chatBtn.style.left = `${e.clientX - offsetX}px`;
+      chatBtn.style.top = `${e.clientY - offsetY}px`;
+      chatBtn.style.bottom = "auto";
+      chatBtn.style.right = "auto";
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (isDragging) {
+      isDragging = false;
+      chatBtn.style.transition = "all 0.2s ease";
+    }
+  });
+
+  // --- Hook up Salesforce Messaging Chat ---
+  chatBtn.addEventListener("click", () => {
+    if (window.embeddedservice_bootstrap?.utilAPI) {
+      window.embeddedservice_bootstrap.utilAPI.launchChat();
+      // Keep chat bubble hidden
+      setTimeout(() => {
+        window.embeddedservice_bootstrap.utilAPI.hideChatButton();
+      }, 100);
+    } else {
+      console.warn("Chat API not ready yet");
+    }
+  });
 </script>
 
 <script 
@@ -214,6 +275,7 @@ function initEmbeddedMessaging() {
 
 </body>
 </html>
+
 
 
 
