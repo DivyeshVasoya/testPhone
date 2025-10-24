@@ -178,106 +178,31 @@
   }
 </style>
 
-<script type="text/javascript">
-function initEmbeddedMessaging() {
-  try {
-    embeddedservice_bootstrap.settings.language = 'en_US';
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-    embeddedservice_bootstrap.init(
-      '00DgL00000A8cwn', // Org ID
-      'TESTCHANNEL',     // Deployment Name
-      'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
-      { scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com' }
-    );
-
-    // Fires when Messaging SDK is ready
-    window.addEventListener("onEmbeddedMessagingReady", () => {
-      const chatAPI = window.embeddedservice_bootstrap.utilAPI;
-
-      if (chatAPI) {
-        // Hide Salesforce's default chat bubble
-        chatAPI.hideChatButton();
-
-        // Global function for manual chat launch
-        window.launchSupportChat = () => {
-          chatAPI.launchChat();
-
-          // Keep Salesforce bubble hidden after launch
-          setTimeout(() => chatAPI.hideChatButton(), 100);
-        };
-
-        // Auto-hide after conversation ends
-        window.addEventListener("onEmbeddedMessagingConversationEnded", () => {
-          console.log("Conversation ended — hiding chat bubble.");
-          chatAPI.hideChatButton();
-        });
-      }
-    });
-
-  } catch (err) {
-    console.error("Error loading Embedded Messaging: ", err);
-  }
-}
-
-// Load Salesforce Embedded Messaging bootstrap script
+			embeddedservice_bootstrap.init(
+				'00DgL00000A8cwn',
+				'TESTCHANNEL',
+				'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
+				{
+					scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
 </script>
-
-<script
-  type="text/javascript"
-  src="https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js"
-  onload="initEmbeddedMessaging()">
-</script>
-
-<script>
-// Make sure draggable logic runs after button exists
-window.addEventListener("DOMContentLoaded", () => {
-  const chatBtn = document.getElementById("chatWithSupport");
-  let isDragging = false, offsetX, offsetY;
-
-  chatBtn.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    offsetX = e.clientX - chatBtn.getBoundingClientRect().left;
-    offsetY = e.clientY - chatBtn.getBoundingClientRect().top;
-    chatBtn.style.transition = "none";
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      chatBtn.style.left = `${e.clientX - offsetX}px`;
-      chatBtn.style.top = `${e.clientY - offsetY}px`;
-      chatBtn.style.bottom = "auto";
-      chatBtn.style.right = "auto";
-    }
-  });
-
-  document.addEventListener("mouseup", () => {
-    if (isDragging) {
-      isDragging = false;
-      chatBtn.style.transition = "all 0.2s ease";
-    }
-  });
-
-  // Launch chat when clicked
-  chatBtn.addEventListener("click", () => {
-    if (window.embeddedservice_bootstrap?.utilAPI) {
-      window.embeddedservice_bootstrap.utilAPI.launchChat();
-      setTimeout(() => window.embeddedservice_bootstrap.utilAPI.hideChatButton(), 100);
-    } else {
-      console.warn("Chat API not ready yet");
-    }
-  });
-});
-</script>
-
-
-	  
-
-
+<script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 <!--<script type='text/javascript' src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWGithubHostChannel1758519450394/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>-->
 
 </body>
 </html>
+
 
 
 
