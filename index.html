@@ -245,12 +245,13 @@
 
       // When messaging is ready, call your draggable logic
       window.addEventListener("onEmbeddedMessagingReady", makeSalesforceChatDraggable);
-
+		
     } catch (err) {
       console.error('Error loading Embedded Messaging: ', err);
     }
   }
- window.addEventHandler('onEmbeddedMessagingConversationClosed', () => {
+		  
+ window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
     // A timeout can be added here if needed, in case the chatbot logic isn't immediate
 	 console.log('chat close ::::: ');
     // setTimeout(checkAndHideChatButton, 500); 
@@ -315,6 +316,7 @@
 
 </body>
 </html>
+
 
 
 
