@@ -250,7 +250,7 @@
       console.error('Error loading Embedded Messaging: ', err);
     }
   }
- embedded_svc.addEventHandler('onEmbeddedMessagingConversationClosed', () => {
+ window.addEventHandler('onEmbeddedMessagingConversationClosed', () => {
     // A timeout can be added here if needed, in case the chatbot logic isn't immediate
 	 console.log('chat close ::::: ');
     // setTimeout(checkAndHideChatButton, 500); 
@@ -315,6 +315,7 @@
 
 </body>
 </html>
+
 
 
 
