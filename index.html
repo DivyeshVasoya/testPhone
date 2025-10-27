@@ -254,12 +254,15 @@
  window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
     // A timeout can be added here if needed, in case the chatbot logic isn't immediate
 	 console.log('chat close ::::: ');
-    console.log('Hide::::::::::::');
 	 
-	//embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+	embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+	 
+	/******
 	const fr= document.getElementById('embeddedMessagingFrame');
-	 fr.style.display= 'none';
-	 console.log('fr ::::: ', fr.style);
+	fr.style.display= 'none';
+	console.log('fr ::::: ', fr.style);
+	*******/
+	 
 	// const locSt = localStorage;
 	// const suffix = '_WEB_STORAGE';
  //    const matchingKey = Object.keys(locSt).find(key => key.endsWith(suffix));
@@ -319,6 +322,7 @@
 
 </body>
 </html>
+
 
 
 
