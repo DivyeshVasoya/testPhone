@@ -208,8 +208,6 @@
   // --- Connect with Salesforce Embedded Messaging ---
   window.addEventListener("onEmbeddedMessagingReady", () => {
     const chatAPI = window.embeddedservice_bootstrap.utilAPI;
-	
-	embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
     // Click opens Salesforce chat
     document.getElementById("draggableChat").addEventListener("click", () => {
       if (chatAPI) {
@@ -254,6 +252,9 @@
   }
 
   function makeSalesforceChatDraggable() {
+	  
+	console.log('Hide::::::::::::');
+	embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
     const checkExist = setInterval(() => {
       const chatLauncher = document.querySelector('div[id^="embeddedMessaging"]');
       if (chatLauncher) {
@@ -304,6 +305,7 @@
 
 </body>
 </html>
+
 
 
 
