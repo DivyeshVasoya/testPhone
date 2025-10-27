@@ -254,7 +254,9 @@
   function makeSalesforceChatDraggable() {
 	  
 	console.log('Hide::::::::::::');
-	embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+	const locId = localStorage;
+	console.log('loal :::: ', locId);
+	//embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
     // const checkExist = setInterval(() => {
     //   const chatLauncher = document.querySelector('div[id^="embeddedMessaging"]');
     //   if (chatLauncher) {
@@ -305,6 +307,7 @@
 
 </body>
 </html>
+
 
 
 
