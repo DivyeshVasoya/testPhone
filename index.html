@@ -254,18 +254,18 @@
  window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
     // A timeout can be added here if needed, in case the chatbot logic isn't immediate
 	 console.log('chat close ::::: ');
-    // setTimeout(checkAndHideChatButton, 500); 
+    console.log('Hide::::::::::::');
+	 
+	embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+	// const locSt = localStorage;
+	// const suffix = '_WEB_STORAGE';
+ //    const matchingKey = Object.keys(locSt).find(key => key.endsWith(suffix));
+	// const storValue = matchingKey ? locSt[matchingKey] : undefined;
+	// console.log('loal :::: ', storValue);
+	
 });
 
   function makeSalesforceChatDraggable() {
-	  
-	console.log('Hide::::::::::::');
-	const locSt = localStorage;
-	const suffix = '_WEB_STORAGE';
-    const matchingKey = Object.keys(locSt).find(key => key.endsWith(suffix));
-	const storValue = matchingKey ? locSt[matchingKey] : undefined;
-	console.log('loal :::: ', storValue);
-	//embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
     // const checkExist = setInterval(() => {
     //   const chatLauncher = document.querySelector('div[id^="embeddedMessaging"]');
     //   if (chatLauncher) {
@@ -316,6 +316,7 @@
 
 </body>
 </html>
+
 
 
 
