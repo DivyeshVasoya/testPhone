@@ -256,7 +256,7 @@
 	 console.log('chat close ::::: ');
 	 
 	// embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
-	 embeddedservice_bootstrap.utilAPI.hideChatButton();
+	 window.addEventListener('onEmbeddedMessagingButtonCreated',embeddedservice_bootstrap.utilAPI.hideChatButton());
 	 
 	/******
 	const fr= document.getElementById('embeddedMessagingFrame');
@@ -323,6 +323,7 @@
 
 </body>
 </html>
+
 
 
 
