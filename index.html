@@ -228,83 +228,36 @@
 //     }
 //   });
 </script>
-	  <script type="text/javascript">
+
+	  <script type='text/javascript'>
+		  	
+	 
   function initEmbeddedMessaging() {
     try {
-      // Set language
       embeddedservice_bootstrap.settings.language = 'en_US';
-
-      // Initialize Embedded Messaging
       embeddedservice_bootstrap.init(
-        '00DgL00000A8cwn', // Org ID
-        'TESTCHANNEL',     // Deployment Name
+        '00DgL00000A8cwn',  // Org ID
+        'TESTCHANNEL',      // Deployment Name
         'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
         {
           scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com'
         }
       );
 
-      // Optional: hide chat button once it is created
-      window.addEventListener('onEmbeddedMessagingButtonCreated', () => {
-        if (embeddedservice_bootstrap && embeddedservice_bootstrap.utilAPI) {
-          embeddedservice_bootstrap.utilAPI.hideChatButton();
-          console.log('Chat button hidden on creation');
-        }
-      });
-
-      // Listen for conversation closed event
-      window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
-        console.log('Chat closed :::::');
-
-        // Standard disable: hide chat button on load
-        embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
-
-        // Custom disable: hide entire iframe popup
-        const fr = document.getElementById('embeddedMessagingFrame');
-        if (fr) {
-          fr.style.display = 'none';
-          console.log('iframe style after hide :::::', fr.style);
-        }
-      });
-
+      // When messaging is ready, call your draggable logic
+      //window.addEventListener("onEmbeddedMessagingReady", makeSalesforceChatDraggable);
+		
     } catch (err) {
       console.error('Error loading Embedded Messaging: ', err);
     }
   }
-</script>
-
-<!-- Load bootstrap script and initialize messaging -->
-<script type="text/javascript" src="https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js" onload="initEmbeddedMessaging()"></script>
-
-	  <script type='text/javascript'>
-		  	
-	 
- //  function initEmbeddedMessaging() {
- //    try {
- //      embeddedservice_bootstrap.settings.language = 'en_US';
- //      embeddedservice_bootstrap.init(
- //        '00DgL00000A8cwn',  // Org ID
- //        'TESTCHANNEL',      // Deployment Name
- //        'https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455',
- //        {
- //          scrt2URL: 'https://orgfarm-d972a113f1-dev-ed.develop.my.salesforce-scrt.com'
- //        }
- //      );
-
- //      // When messaging is ready, call your draggable logic
- //      //window.addEventListener("onEmbeddedMessagingReady", makeSalesforceChatDraggable);
-		
- //    } catch (err) {
- //      console.error('Error loading Embedded Messaging: ', err);
- //    }
- //  }
 		  
- // window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
+ window.addEventListener('onEmbeddedMessagingConversationClosed', () => {
  //    // A timeout can be added here if needed, in case the chatbot logic isn't immediate
 	//  console.log('chat close ::::: ');
 	 
-	// embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;// standard disable
-	 // window.addEventListener('onEmbeddedMessagingButtonCreated',() => embeddedservice_bootstrap.utilAPI.hideChatButton());
+	 embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;// standard disable
+	 window.addEventListener('onEmbeddedMessagingButtonCreated',() => embeddedservice_bootstrap.utilAPI.hideChatButton());
 	 
 	
 	// const fr= document.getElementById('embeddedMessagingFrame');
@@ -363,14 +316,15 @@
   //}
 </script>
 
-<!-- <script 
+<script 
   type='text/javascript'
   src='https://orgfarm-d972a113f1-dev-ed.develop.my.site.com/ESWTESTCHANNEL1760556918455/assets/js/bootstrap.min.js'
   onload='initEmbeddedMessaging()'>
-</script> -->
+</script>
 
 </body>
 </html>
+
 
 
 
