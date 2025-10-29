@@ -173,61 +173,62 @@
 <script>
   // --- Make custom div draggable ---
 
-  dragElement(document.getElementById("draggableChat"));
+//   dragElement(document.getElementById("draggableChat"));
 
-  function dragElement(elmnt) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    elmnt.onmousedown = dragMouseDown;
+//   function dragElement(elmnt) {
+//     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+//     elmnt.onmousedown = dragMouseDown;
 
-    function dragMouseDown(e) {
-      e.preventDefault();
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
-    }
+//     function dragMouseDown(e) {
+//       e.preventDefault();
+//       pos3 = e.clientX;
+//       pos4 = e.clientY;
+//       document.onmouseup = closeDragElement;
+//       document.onmousemove = elementDrag;
+//     }
 
-    function elementDrag(e) {
-      e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      elmnt.style.bottom = "auto";
-      elmnt.style.right = "auto";
-    }
+//     function elementDrag(e) {
+//       e.preventDefault();
+//       pos1 = pos3 - e.clientX;
+//       pos2 = pos4 - e.clientY;
+//       pos3 = e.clientX;
+//       pos4 = e.clientY;
+//       elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+//       elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+//       elmnt.style.bottom = "auto";
+//       elmnt.style.right = "auto";
+//     }
 
-    function closeDragElement() {
-      document.onmouseup = null;
-      document.onmousemove = null;
-    }
-  }
+//     function closeDragElement() {
+//       document.onmouseup = null;
+//       document.onmousemove = null;
+//     }
+//   }
 
-  // --- Connect with Salesforce Embedded Messaging ---
-  window.addEventListener("onEmbeddedMessagingReady", () => {
-    const chatAPI = window.embeddedservice_bootstrap.utilAPI;
-    // Click opens Salesforce chat
-    document.getElementById("draggableChat").addEventListener("click", () => {
-      if (chatAPI) {
-        chatAPI.launchChat();
-      } else {
-        console.warn("Chat API not ready");
-      }
-    });
+//   // --- Connect with Salesforce Embedded Messaging ---
+//   window.addEventListener("onEmbeddedMessagingReady", () => {
+//     const chatAPI = window.embeddedservice_bootstrap.utilAPI;
+//     // Click opens Salesforce chat
+//     document.getElementById("draggableChat").addEventListener("click", () => {
+//       if (chatAPI) {
+//         chatAPI.launchChat();
+//       } else {
+//         console.warn("Chat API not ready");
+//       }
+//     });
 
-    // Optional: hide custom icon when chat is open
-    if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
-      embeddedservice_bootstrap.event.on("ESW_EVENT.OPEN", () => {
-        document.getElementById("draggableChat").style.display = "none";
-      });
-      embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
-        document.getElementById("draggableChat").style.display = "block";
-      });
-    }
-  });
+//     // Optional: hide custom icon when chat is open
+//     if (embeddedservice_bootstrap.event && embeddedservice_bootstrap.event.on) {
+//       embeddedservice_bootstrap.event.on("ESW_EVENT.OPEN", () => {
+//         document.getElementById("draggableChat").style.display = "none";
+//       });
+//       embeddedservice_bootstrap.event.on("ESW_EVENT.END_SESSION", () => {
+//         document.getElementById("draggableChat").style.display = "block";
+//       });
+//     }
+//   });
 </script>
+	  
 	  <script type='text/javascript'>
 		  	
 	 
@@ -323,6 +324,7 @@
 
 </body>
 </html>
+
 
 
 
